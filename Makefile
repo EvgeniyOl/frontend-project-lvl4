@@ -9,3 +9,11 @@ start:
 
 install:
 	npm ci
+
+install: install-deps
+
+lint:
+	npx eslint . --ext js,jsx
+
+deploy:
+	git push heroku
