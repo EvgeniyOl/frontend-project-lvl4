@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { selectors as channelSelectors } from '../slices/channelsSlice.js';
 import { selectors as messagesSelectors } from '../slices/messagesSlice.js';
 
-const MessagesHeader = () => {
+function MessagesHeader() {
   const { t } = useTranslation('translation', { keyPrefix: 'messages' });
   const currentChannelId = useSelector((state) => state.channels.currentChannelId);
   const channels = useSelector(channelSelectors.selectAll);
@@ -22,5 +22,5 @@ const MessagesHeader = () => {
       <span className="text-muted">{t('messages', { count: channelMessages.length })}</span>
     </div>
   );
-};
+}
 export default MessagesHeader;

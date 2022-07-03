@@ -1,11 +1,11 @@
-import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
-import fetchData from "../thunks/dataFetchThunk.js";
-import { removeChannel } from "./channelsSlice.js";
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+import fetchData from '../thunks/dataFetchThunk.js';
+import { removeChannel } from './channelsSlice.js';
 
 const messagesAdapter = createEntityAdapter();
 const initialState = messagesAdapter.getInitialState();
 const messagesSlice = createSlice({
-  name: "messages",
+  name: 'messages',
   initialState,
   reducers: {
     addMessage: messagesAdapter.addOne,
@@ -19,7 +19,7 @@ const messagesSlice = createSlice({
         const removedChannelId = action.payload;
         const entities = Object.values(state.entities);
         const restEntities = entities.filter(
-          (e) => e.channelId !== removedChannelId
+          (e) => e.channelId !== removedChannelId,
         );
         messagesAdapter.setAll(state, restEntities);
       });
@@ -27,6 +27,6 @@ const messagesSlice = createSlice({
 });
 export const { addMessage } = messagesSlice.actions;
 export const selectors = messagesAdapter.getSelectors(
-  (state) => state.messages
+  (state) => state.messages,
 );
 export default messagesSlice.reducer;

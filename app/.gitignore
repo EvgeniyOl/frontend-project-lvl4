@@ -17,4 +17,5 @@
 
 npm-debug.log*
 
-.eslintrc.yml
+.eslintrc.json
+.prettierrc.json
