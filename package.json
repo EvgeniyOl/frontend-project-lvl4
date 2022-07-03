@@ -5,7 +5,6 @@
   "main": "app/src/index.js",
   "type": "module",
   "scripts": {
-    "install": "make install",
     "build": "npm run build --prefix app",
     "start": "start-server -s ./app/build"
   },
