@@ -12,9 +12,6 @@
     "type": "git",
     "url": "git+https://github.com/EvgeniyOl/frontend-project-lvl4.git"
   },
-  "keywords": [
-    "hexlet"
-  ],
   "author": "Evgeniy Olyanskii",
   "license": "ISC",
   "bugs": {
