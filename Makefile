@@ -1,19 +1,9 @@
-start-frontend:
-	npm run start-frontend
-
 start-backend:
-	npm run start-backend
-
-start:
-	npm run start
-
+	npx start-server -p 5001
+start-frontend:
+	make -C app start
 install:
 	npm ci
-
-install: install-deps
-
-lint:
-	npx eslint . --ext js,jsx
-
-deploy:
-	git push heroku
+	make -C app install
+start:
+	make start-backend & make start-frontend

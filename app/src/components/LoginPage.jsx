@@ -1,15 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react';
+import loginImage from './../assets/chat.png';
+import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
-import validationSchema from '../utils/validationSchema.js';
-import { Button, Card, Col, Container, FloatingLabel, Form, Row } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+import {
+  Button,
+  Card,
+  Col,
+  Container,
+  FloatingLabel,
+  Form,
+  Row,
+} from 'react-bootstrap';
 import axios from 'axios';
+import validationSchema from '../utils/authorizationSchema.js';
 import routes from '../utils/routes.js';
-import { useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth.jsx';
 
 const LoginPage = () => {
   const [authFailed, setAuthFailed] = useState(false);
-  const authFailedPhrase = 'Неверные имя пользователя или пароль';
+  const { t } = useTranslation('translation', { keyPrefix: 'loginPage' });
   const auth = useAuth();
   const navigate = useNavigate();
   const inputRef = useRef();
@@ -40,17 +50,18 @@ const LoginPage = () => {
     },
   });
   return (
-    <Container fluid className="h-100">
+    <Container fluid className="h-100 mt-5">
       <Row className="justify-content-center align-content-center h-100">
         <Col md="8" xxl="6">
           <Card className="shadow-sm">
-            <Card.Body className="p-5">
+            <Card.Body className="p-5 d-flex flex-column flex-md-row justify-content-around align-itemss-center">
+              <img className='m-5 rounded-circle' src={loginImage} alt="loginImage" />
               <Form onSubmit={formik.handleSubmit}>
-                <h1 className="text-center mb-4">Войти</h1>
-                <FloatingLabel label="Ваш ник" controlId="username" className="mb-3">
+                <h1 className="text-center mb-4">{t('page.enter')}</h1>
+                <FloatingLabel label={t('page.username')} controlId="username" className="mb-3">
                   <Form.Control
                     name="username"
-                    placeholder="Ваш ник"
+                    placeholder={t('page.username')}
                     ref={inputRef}
                     value={formik.values.username}
                     onChange={formik.handleChange}
@@ -58,22 +69,29 @@ const LoginPage = () => {
                   />
                   <Form.Control.Feedback type="invalid">{formik.errors.username}</Form.Control.Feedback>
                 </FloatingLabel>
-                <FloatingLabel label="Пароль" controlId="password" className="mb-3">
+                <FloatingLabel label={t('page.password')} controlId="password" className="mb-3">
                   <Form.Control
                     type="password"
                     name="password"
-                    placeholder="Пароль"
+                    placeholder={t('page.password')}
                     value={formik.values.password}
                     onChange={formik.handleChange}
                     isInvalid={(formik.touched.password && !!formik.errors.password) || authFailed}
                   />
-                  <Form.Control.Feedback type="invalid">{formik.errors.password ?? authFailedPhrase}</Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">
+                    {formik.errors.password ?? t('errors.authFailedPhrase')}
+                  </Form.Control.Feedback>
                 </FloatingLabel>
-                <Button variant="outline-primary" type="submit">Submit</Button>
+                <Button className='w-100' variant="outline-primary" type="submit">{t('page.enter')}</Button>
               </Form>
             </Card.Body>
             <Card.Footer>
-              <div className="text-center">Something</div>
+              <div className="text-center">
+                <span>
+                  {t('page.haveAcc')}
+                </span>
+                <Link to="/signup">{t('page.registration')}</Link>
+              </div>
             </Card.Footer>
           </Card>
         </Col>
