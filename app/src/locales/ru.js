@@ -78,5 +78,8 @@ export default {
       messages_few: '{{ count }} сообщения',
       messages_many: '{{ count }} сообщений',
     },
+    errors: {
+      networkError: 'Ошибка соединения',
+    },
   },
 };

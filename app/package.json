@@ -49,27 +49,16 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest",
-      "plugin:react/recommended",
-      "plugin:react/jsx-runtime",
-      "plugin:react-hooks/recommended",
       "plugin:jsx-a11y/recommended",
       "plugin:import/recommended",
-      "prettier",
-      "airbnb"
+      "react-app",
+      "react-app/jest"
     ],
-    "parserOptions": {
-      "ecmaFeatures": {
-        "jsx": true
-      },
-      "ecmaVersion": "latest",
-      "sourceType": "module"
-    },
     "plugins": [
-      "react"
+      "jsx-a11y"
     ],
     "rules": {
+      "react/prop-types": 0,
       "react/jsx-filename-extension": [
         1,
         {

@@ -4,13 +4,13 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { toast } from 'react-toastify';
-import { changeChannel, selectors } from '../slices/channelsSlice.js';
-import useSocket from '../hooks/useSocket.jsx';
+import { selectors } from '../../slices/channelsSlice.js';
+import useChatApi from '../../hooks/useChatApi.jsx';
+import { hideModal } from '../../slices/modalsSlice.js';
 
-const Add = ({ onHide }) => {
+function Add() {
   const { t } = useTranslation('translation', { keyPrefix: 'modals' });
-  const socket = useSocket();
+  const { addNewChannel } = useChatApi();
   const [disabled, setDisabled] = useState(false);
   const inputRef = useRef();
   useEffect(() => {
@@ -30,22 +30,12 @@ const Add = ({ onHide }) => {
     }),
     onSubmit: () => {
       setDisabled(true);
-      socket.emit('newChannel', formik.values, (response) => {
-        if (response.status === 'ok') {
-          dispatch(changeChannel(response.data.id));
-          toast.success(t('addSuccess'));
-          onHide();
-        } else {
-          toast.error(t('networkError'), {
-            position: 'top-center',
-          });
-          setDisabled(false);
-        }
-      });
+      addNewChannel(formik.values);
+      setDisabled(false);
     },
   });
   return (
-    <Modal show onHide={onHide}>
+    <Modal show onHide={() => dispatch(hideModal())}>
       <Modal.Header closeButton>
         <Modal.Title>{t('add')}</Modal.Title>
       </Modal.Header>
@@ -61,15 +51,26 @@ const Add = ({ onHide }) => {
               onChange={formik.handleChange}
               isInvalid={!!formik.errors.name}
             />
-            <Form.Control.Feedback type="invalid">{formik.errors.name}</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              {formik.errors.name}
+            </Form.Control.Feedback>
           </Form.Group>
           <div className="d-flex justify-content-end">
-            <Button variant="secondary" type="button" onClick={onHide} className="me-2">{t('buttons.cancel')}</Button>
-            <Button variant="primary" type="submit" disabled={disabled}>{t('buttons.send')}</Button>
+            <Button
+              variant="secondary"
+              type="button"
+              onClick={() => dispatch(hideModal())}
+              className="me-2"
+            >
+              {t('buttons.cancel')}
+            </Button>
+            <Button variant="primary" type="submit" disabled={disabled}>
+              {t('buttons.send')}
+            </Button>
           </div>
         </Form>
       </Modal.Body>
     </Modal>
   );
-};
+}
 export default Add;

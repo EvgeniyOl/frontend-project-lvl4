@@ -14,3 +14,5 @@
 ![REDUX-toolkit](https://img.shields.io/badge/-REDUX-2980B9?style=for-the-badge&logo=redux-toolkit)
 
 [![Actions Status](https://github.com/EvgeniyOl/frontend-project-lvl4/workflows/hexlet-check/badge.svg)](https://github.com/EvgeniyOl/frontend-project-lvl4/actions)
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/ef4d517f2ebc942917e9/maintainability)](https://codeclimate.com/github/EvgeniyOl/frontend-project-lvl4/maintainability)
