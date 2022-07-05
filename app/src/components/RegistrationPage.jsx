@@ -13,6 +13,7 @@ import {
 } from 'react-bootstrap';
 import axios from 'axios';
 import * as Yup from 'yup';
+import registrationImg from '../assets/auth.png';
 import useAuth from '../hooks/useAuth.jsx';
 import routes from '../utils/routes.js';
 
@@ -67,7 +68,8 @@ function RegistrationPage() {
       <Row className="justify-content-center align-content-center h-100">
         <Col md="8" xxl="6">
           <Card className="shadow-sm">
-            <Card.Body className="p-5">
+            <Card.Body className="p-5 d-flex">
+              <img className="rounded-circle m-5" width="250px" src={registrationImg} alt="registrationImg" />
               <Form onSubmit={f.handleSubmit}>
                 <h1 className="text-center mb-4">{t('page.registration')}</h1>
                 <FloatingLabel
@@ -127,7 +129,7 @@ function RegistrationPage() {
                     {f.errors.passConfirm ?? t('errors.regFailedPhrase')}
                   </Form.Control.Feedback>
                 </FloatingLabel>
-                <Button variant="outline-primary" type="submit">
+                <Button className="w-100" variant="outline-primary" type="submit">
                   {t('page.register')}
                 </Button>
               </Form>

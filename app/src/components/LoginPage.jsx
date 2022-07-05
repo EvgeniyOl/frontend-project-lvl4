@@ -13,6 +13,7 @@ import {
 } from 'react-bootstrap';
 import axios from 'axios';
 import * as Yup from 'yup';
+import loginImg from '../assets/chat.png';
 import routes from '../utils/routes.js';
 import useAuth from '../hooks/useAuth.jsx';
 
@@ -56,8 +57,9 @@ function LoginPage() {
       <Row className="justify-content-center align-content-center h-100">
         <Col md="8" xxl="6">
           <Card className="shadow-sm">
-            <Card.Body className="p-5">
-              <Form onSubmit={formik.handleSubmit}>
+            <Card.Body className="p-5 d-flex">
+              <img className="rounded-circle m-5" width="250px" src={loginImg} alt="loginImg" />
+              <Form className="m-5" onSubmit={formik.handleSubmit}>
                 <h1 className="text-center mb-4">{t('page.enter')}</h1>
                 <FloatingLabel
                   label={t('page.username')}
@@ -99,7 +101,7 @@ function LoginPage() {
                     {formik.errors.password ?? t('errors.authFailedPhrase')}
                   </Form.Control.Feedback>
                 </FloatingLabel>
-                <Button variant="outline-primary" type="submit">
+                <Button className="w-100" variant="outline-primary" type="submit">
                   {t('page.enter')}
                 </Button>
               </Form>
