@@ -32,8 +32,8 @@ function MessagesBody() {
       className="chat-messages overflow-auto px-5"
       ref={scrollRef}
     >
-      {channelMessages &&
-        channelMessages.map((m) => (
+      {channelMessages
+        && channelMessages.map((m) => (
           <Message
             username={m.username}
             body={m.body}

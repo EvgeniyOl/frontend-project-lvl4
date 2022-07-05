@@ -1,5 +1,7 @@
 import React from 'react';
-import { Button, ButtonGroup, Col, Dropdown, Nav } from 'react-bootstrap';
+import {
+  Button, ButtonGroup, Col, Dropdown, Nav,
+} from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { changeChannel, selectors } from '../slices/channelsSlice.js';
@@ -44,26 +46,22 @@ function RemovableChannel({ data: { channel, currentChannelId } }) {
         </Dropdown.Toggle>
         <Dropdown.Menu>
           <Dropdown.Item
-            onClick={() =>
-              dispatch(
-                openModal({
-                  type: 'removing',
-                  item: channel,
-                }),
-              )
-            }
+            onClick={() => dispatch(
+              openModal({
+                type: 'removing',
+                item: channel,
+              }),
+            )}
           >
             {t('remove')}
           </Dropdown.Item>
           <Dropdown.Item
-            onClick={() =>
-              dispatch(
-                openModal({
-                  type: 'renaming',
-                  item: channel,
-                }),
-              )
-            }
+            onClick={() => dispatch(
+              openModal({
+                type: 'renaming',
+                item: channel,
+              }),
+            )}
           >
             {t('rename')}
           </Dropdown.Item>
@@ -86,38 +84,34 @@ function Channels() {
         <Button
           variant="outline-primary"
           type="button"
-          onClick={() =>
-            dispatch(
-              openModal({
-                type: 'adding',
-                item: null,
-              }),
-            )
-          }
+          onClick={() => dispatch(
+            openModal({
+              type: 'adding',
+              item: null,
+            }),
+          )}
         >
           +
         </Button>
       </div>
       <Nav as="ul" fill variant="pills" className="px-2">
-        {channels.map((channel) =>
-          channel.removable ? (
-            <RemovableChannel
-              data={{
-                channel,
-                currentChannelId,
-              }}
-              key={channel.id}
-            />
-          ) : (
-            <NotRemovableChannel
-              data={{
-                channel,
-                currentChannelId,
-              }}
-              key={channel.id}
-            />
-          ),
-        )}
+        {channels.map((channel) => (channel.removable ? (
+          <RemovableChannel
+            data={{
+              channel,
+              currentChannelId,
+            }}
+            key={channel.id}
+          />
+        ) : (
+          <NotRemovableChannel
+            data={{
+              channel,
+              currentChannelId,
+            }}
+            key={channel.id}
+          />
+        )))}
       </Nav>
     </Col>
   );

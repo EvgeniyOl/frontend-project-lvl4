@@ -37,27 +37,27 @@ function App() {
             <Routes>
               <Route
                 path={routes.chatPage()}
-                element={
+                element={(
                   <PrivateRoute>
                     <ChatPage />
                   </PrivateRoute>
-                }
+                )}
               />
               <Route
                 path={routes.loginPage()}
-                element={
+                element={(
                   <AuthRoute>
                     <LoginPage />
                   </AuthRoute>
-                }
+                )}
               />
               <Route
                 path={routes.regPage()}
-                element={
+                element={(
                   <AuthRoute>
                     <RegistrationPage />
                   </AuthRoute>
-                }
+                )}
               />
               <Route path={routes.page404()} element={<Page404 />} />
             </Routes>

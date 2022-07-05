@@ -71,8 +71,8 @@ function LoginPage() {
                     value={formik.values.username}
                     onChange={formik.handleChange}
                     isInvalid={
-                      (formik.touched.username && !!formik.errors.username) ||
-                      authFailed
+                      (formik.touched.username && !!formik.errors.username)
+                      || authFailed
                     }
                   />
                   <Form.Control.Feedback type="invalid">
@@ -91,8 +91,8 @@ function LoginPage() {
                     value={formik.values.password}
                     onChange={formik.handleChange}
                     isInvalid={
-                      (formik.touched.password && !!formik.errors.password) ||
-                      authFailed
+                      (formik.touched.password && !!formik.errors.password)
+                      || authFailed
                     }
                   />
                   <Form.Control.Feedback type="invalid">

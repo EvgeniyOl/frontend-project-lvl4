@@ -120,8 +120,7 @@ function RegistrationPage() {
                     value={f.values.passConfirm}
                     onChange={f.handleChange}
                     isInvalid={
-                      (f.touched.passConfirm && !!f.errors.passConfirm) ||
-                      authFailed
+                      (f.touched.passConfirm && !!f.errors.passConfirm) || authFailed
                     }
                   />
                   <Form.Control.Feedback type="invalid">
